@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Output</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        {% include "header.html" %}
+        <br>
+        {{ ar.message }}
+    </div>
+</body>
+</html>

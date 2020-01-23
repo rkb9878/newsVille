@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css" media="all">
+    <!--//booststrap end-->
+    <!-- font-awesome icons -->
+    <link href="{% static "fontawesome-free-5.11.2-web/css/all.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!--stylesheets-->
+    <link href="{% static "css/style.css" %}" rel='stylesheet' type='text/css' media="all">
+    <!--//stylesheets-->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "fontawesome-free-5.11.2-web/css/all.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'mycsss/mycsss.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+{#{% if request.session.user_email %}#}
+{#    {% include 'indexnavigationuser.html' %}#}
+{#{% elif not request.session.user_email %}#}
+{#    {% include 'indexnavigation.html' %}#}
+{#{% endif %}#}
+
+<section id="login">
+    <br>
+    <br>
+    <div class="">
+
+        <div class="text-center">
+            <h1 class="comman-title">Login</h1>
+        </div>
+        <div id="box">
+            <div id="innderbox">
+                <form id="form1" action="">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6 offset-sm-3">
+                            <div class="form-group pt-3">
+                                <i class="fa fa-envelope fa-2x text-black-50">Email</i>
+                                <input type="email" placeholder="Enter Email" name="useremail" id="useremail"
+                                       class="form-control mycss"
+                                       data-rule-required="true">
+                            </div>
+                            <div class="form-group">
+                                <i class="fa fa-eye text-black-50 fa-2x">Password</i>
+                                <input type="password" data-rule-required="true" placeholder="Enter Password"
+                                       name="userpassword1"
+                                       id="userpassword1" class="form-control mycss">
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-8">
+                                    <span class="text-danger font-weight-bold" style="cursor: pointer"
+                                          onclick="forgetpass()">Forgot password?</span>
+                                </div>
+                                <div class="col-sm-3 offset-1">
+                                    <input type="button" onclick="userchecklogin()" value="Login"
+                                           class="btn btn-danger text-right">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="text-center">
+                                <h6 class="text-warning font-weight-bold"> Don't have an account ? </h6>
+                                <a href="user_signup1" class="text-center text-dark font-weight-bold" style="cursor: pointer">Register Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <div class="offset-sm-4" id="ans">
+        </div>
+
+    </div>
+</section>
+<!----------------------------ModalPopup---------------------------------->
+<div class="modal" id="forget">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Forgot Password?<br> Don't Worry. We've got this :)</h3>
+            </div>
+            <div class="modal-body">
+                <form id="userforgot">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="smsemail" data-rule-required="true" name="smsemail"
+                               placeholder="Enter Your Email" class="form-control">
+                    </div>
+                    <div>
+                        <span id="msg"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-warning" onclick="forgotsms()">Send SMS</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <span class="close" style="cursor: pointer" data-dismiss="modal">Close</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="{% static "myjs/user.js" %}"></script>
+{% include "jsfiles.html" %}
+{#<hr style="background: #ffc107">#}
+{#{% include 'indexfooter.html' %}#}
+
+</body>
+</html>

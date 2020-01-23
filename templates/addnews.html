@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {#    <h3>Add News</h3>#}
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add News</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <script src="{% static 'blogtextbox/js/bootstrap.js' %}"></script>
+
+    {#    {% include "jsfiles.html" %}#}
+</head>
+<body style="background: url({% static 'images/sky2.jpg' %})">
+<div style="background: rgba(0,0,0,0.7)">
+    {#{% include "NavbarAdmin.html" %}#}
+    {% include "indexnavigation.html" %}
+    <link rel="stylesheet" href="{% static 'blogtextbox/summernote-master/dist/summernote-bs4.css' %}">
+
+    <div class="container pl-sm-5 pr-sm-5 mb-sm-5"
+         style="border-left: 2px solid #ffc107;border-right: 2px solid #ffc107;background: rgba(255,255,255,0.5)">
+        <div class="container p-sm-5" style="margin-top: 8%;">
+            <form id="form1" action="insertnews" method="post">
+                {% csrf_token %}
+                <h1 class="text-center"><span
+                        style="background-image: linear-gradient(#ff7780,transparent 80%,#ff7780);border-radius: 20px"
+                        class="p-sm-3">ADD NEWS</span></h1>
+                <br>
+                <div class="form-group">
+                    <label style="font-weight: bold">Select News Category</label>
+                    <select data-required class="form-control" name="newscatname" id="nawscatname">
+                        <option value="">----Select option----</option>
+                        {% for foo in ar %}
+                            <option value="{{ foo }}">{{ foo }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label style="font-weight: bold">News Title</label>
+                    <textarea type="text" data-rule-required="true" class="form-control" name="newstitle"
+                              id="newstitle"></textarea>
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: bold">News Description</label>
+                    <textarea required class="summernote" name="newsdescription"
+                              id="newsdescription"></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="tops" style="font-weight: bold">Add to Trending</label>
+                            <select name="tops" id="tops" class="form-control">
+                                <option value="no">Not Trending</option>
+                                <option value="yes">Trending</option>
+                            </select>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <label style="font-weight: bold">News Hashtag</label>
+                            <input type="text" data-rule-required="true" class="form-control" name="newshashtag"
+                                   id="newshashtag">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="w-50 btn btn-danger"><strong>Add News</strong></button>
+                    {#            <input type="submit" value="add" class="w-50 btn btn-success">#}
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script src="{% static 'blogtextbox/js/jquery-3.4.1.js' %}"></script>
+<script src="{% static 'blogtextbox/js/popper.min.js' %}"></script>
+<script src="{% static 'blogtextbox/js/bootstrap.js' %}"></script>
+<script src="{% static 'blogtextbox/summernote-master/dist/summernote-bs4.js' %}"></script>
+<script src="{% static 'dist/jquery.validate.js' %}"></script>
+<script>
+    $('.summernote').summernote()
+</script>
+<script>
+    $(document).ready(function () {
+        $("#form1").validate();
+    })
+</script>
+</div>
+</body>
+</html>
+

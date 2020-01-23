@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    {% include 'jsfiles.html' %}
+</head>
+<body>
+<div class="container">
+    {#    {% include "NavbarAdmin.html" %}#}
+
+    {% include 'indexnavigation.html' %}
+    {#    <a href="addcategory">Add Category</a>#}
+    {#    <a href="showcategory">Show Category</a>#}
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <h2>Welcome</h2> {{ request.session.adminemail }}
+
+
+    </div>
+    {{ ar.message }}
+
+
+</div>
+</body>
+</html>

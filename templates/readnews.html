@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css" media="all">
+    <!--//booststrap end-->
+    <!-- font-awesome icons -->
+    <link href="{% static "fontawesome-free-5.11.2-web/css/all.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!--stylesheets-->
+    <link href="{% static "css/style.css" %}" rel='stylesheet' type='text/css' media="all">
+    <!--//stylesheets-->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .mySlides {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'ui/jquery-ui.css' %}">
+</head>
+<body style="background-image: linear-gradient(white,rgba(0,0,0,0.6))">
+{% if request.session.user_email %}
+    {% include 'indexnavigationuser.html' %}
+{% elif not request.session.user_email %}
+    {% include 'navexmple.html' %}
+{% endif %}
+<br>
+<br>
+<br>
+<br>
+
+<div class="container p-sm-3" style="background: rgba(255,255,255,0.9)">
+    {#    <h2 class="text-left font-weight-bold font-italic p-sm-5 rounded-pill" style="border: 1px solid #ffc107; background-image: linear-gradient(transparent 70%, #ffc107)">{{ title }}</h2>#}
+    <h2 class="text-left font-weight-bold font-italic p-sm-3"
+        style="border-top: 1px solid #000000;border-top-left-radius: 20px;border-top-right-radius: 20px;">{{ title }}</h2>
+    <br>
+    <div>
+        <p id="readnews"></p>
+    </div>
+</div>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+{#<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>#}
+<script>
+    $(document).ready(function () {
+        document.getElementById('readnews').innerHTML = "{{ description | safe }}";
+    });
+</script>
+
+
+</body>
+</html>

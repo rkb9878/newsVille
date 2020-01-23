@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Authors</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fontawesome-free-5.11.2-web/css/all.css' %}">
+    <style>
+        .table-hover tbody tr:hover {
+            color: #000000;
+            /* background-color: #007bff52; */
+            background: linear-gradient(transparent 50%, #8baaca);
+        }
+
+        button.bg-light:hover {
+            transition: 0.5s ease-in-out;
+            background-color: white !important;
+            cursor: pointer;
+            box-sizing: border-box;
+            box-shadow: 0 10px 10px #868686;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body style="background-image: url({% static 'images/sky2.jpg' %})">
+
+{#{% include "NavbarAdmin.html" %}#}
+{% include "indexnavigation.html" %}
+<br>
+<br>
+<br>
+<br>
+<!-----------Button to open the Modal--------->
+{#<div class="container text-center">#}
+{#    <div class="bg-primary text-white">#}
+{#        <span class="fa fa-plus-circle fa-4x" data-toggle="modal" data-target="#authorModal"></span>#}
+{#    </div>#}
+{##}
+{#</div>#}
+<!---------Add Author Modal------------>
+<div class="modal" id="authorModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Author</h4>
+                <button type="button" class="close" data-dismiss="modal"></button>
+
+            </div>
+            <div class="modal-body">
+                <form id="addauthor" action="">
+                    <div class="form-group">
+                        <i class="fa fa-user-circle text-black-50">Name</i>
+                        <input type="text" placeholder="Enter Name" data-rule-required="true" class="form-control"
+                               name="name" id="name">
+                    </div>
+
+                    <div class="form-group">
+                        <i class="fa fa-photo text-black-50"> Photo</i>
+                        <input type="file" data-rule-required="true" id="photo" name="photo" class="form-control">
+                    </div>
+                    <div>
+
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-folder-open text-black-50">Type</i>
+                        <select name="type" id="type" required class="form-control">
+                            <option>Columnist</option>
+                            <option>Blogger</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-photo text-black-50">Description</i>
+                        <textarea type="text" data-rule-required="true" id="description" name="description"
+                                  class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary offset-sm-4 col-sm-4" onclick="addauthor()">ADD
+                        </button>
+                        {#                        <button type="reset" class="btn btn-danger offset-sm-4 col-sm-4">Reset#}
+                        {#                        </button>#}
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-----------Add Author End----------->
+<!----------Show Author Data in table form----------->
+<div class="container mt-5 p-sm-4 rounded" style="background: rgba(255,255,255,0.6);">
+    <span class="float-right"><button
+                style="cursor: pointer;"
+                class="fa fa-user-plus bg-light p-sm-1 rounded btn"  data-toggle="modal" data-target="#authorModal"
+                >&nbsp;&nbsp;Add Author
+            </button></span>
+    <div class="text-center">
+        <h1><u>Authors</u></h1>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="bg-light">
+            <tr>
+                <th>Name</th>
+                <th>Photo</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th colspan="3">Action</th>
+            </tr>
+            </thead>
+            <tbody class="font-weight-bold" id="authordataview"></tbody>
+
+        </table>
+    </div>
+</div>
+
+
+<div class="modal" id="deletemodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"></div>
+            <div class="modal-body">
+                <span class="spinner-border text-success" id="dele"></span>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+<!--------------Edit Author  Modal------------>
+<div class="modal" id="editauthormodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">EDIT AUTHORS</h4>
+                <button type="button" class="close" data-dismiss="modal">x</button>
+
+            </div>
+            <div class="modal-body">
+                <form action="" id="editauthor">
+                    <div class="form-group">
+                        <i class="fa fa-user-circle text-black-50">Author Name</i>
+                        <input type="hidden" id="id" name="id">
+                        <input type="text" placeholder="Enter Author Name" data-rule-required="true"
+                               id="editname" name="editname" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <i class="fa fa-folder-open text-black-50">Type</i>
+                        <select name="edittype" id="edittype" required class="form-control">
+                            <option>Columnist</option>
+                            <option>Blogger</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <i class="fa fa-folder text-black-50">Description</i>
+                        <input type="text" placeholder="Enter Description" data-rule-required="true"
+                               id="editdesc" name="editdesc" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <i type="text" class="fa fa-photo text-black-50" id="photoname">Author Photo</i>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="file" onchange="loadFile(event)" data-rule-required="true" id="editphoto"
+                                       name="editphoto" class="form-control">
+                            </div>
+                            <div class="col-sm-6">
+                                <img id="editautphoto" src="{% static "media/" %}{{ ar.catphoto }}"
+                                     style="max-width: 125px; max-height: 80px" alt="">
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <button type="button" value="Submit" class="btn btn-primary offset-sm-4 col-sm-4"
+                                onclick="saveauthor()">Save Changes
+                        </button>
+                    </div>
+
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger">Close</button>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+{% include "jsfiles.html" %}
+<script src="{% static 'myjs/addauthor.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        authordataview();
+
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    function login(){
+        var email=document.getElementById("email").value;
+        var password=document.getElementById("password").value;
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function(){
+            if(this.status==200 & this.readyState==4){
+                var response=this.responseText.trim();
+                alert(response);
+                var ans="<table>";
+                var s="hello";
+                ans+="<tr><td>"+s+"</td></tr>";
+                document.getElementById("div1").innerHTML=ans;
+
+            }
+        };
+        xmlhttp.open('GET','loginwithajax?email='+email+"&password="+password);
+        xmlhttp.send();
+    }
+
+    function select(value){
+        alert(value);
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function(){
+            if(this.status==200 & this.readyState==4){
+                var response=this.responseText.trim();
+                alert(response);
+
+            }
+        };
+        xmlhttp.open('GET','getsubcat?catname='+value);
+        xmlhttp.send();
+    }
+</script>
+<body>
+<div class="container">
+    <form>
+        <div class="form-group">
+            email
+            <input type="text" class="form-control" id="email">
+
+        </div>
+          <div class="form-group">
+              password
+            <input type="text" class="form-control" id="password"><br>
+              <select id="catname" onchange="select(this.value)">
+                  <option value="politics">
+                      politics
+                  </option>
+                  <option value="sports">
+                      sports
+                  </option>
+                  <option value="cat3">
+                      cat3
+                  </option>
+
+              </select>
+
+        </div>
+          <div class="form-group">
+            <input type="button" class="form-control" value="login" onclick="login()">
+
+        </div>
+    </form>
+<div id="div1">
+
+</div>
+</div>
+</body>
+</html>

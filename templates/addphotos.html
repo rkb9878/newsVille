@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Add Photos</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "fontawesome-free-5.11.2-web/css/all.css" %}" rel="stylesheet">
+</head>
+<body style="background: url({% static 'images/sky2.jpg' %})">
+<div style="background: rgba(0,0,0,0.7)">
+    {% include "indexnavigation.html" %}
+    <div class="container pl-sm-5 pr-sm-5 mb-sm-5"
+         style="border-left: 2px solid #ffc107;border-right: 2px solid #ffc107;background: rgba(255,255,255,0.5)">
+        <div class="container p-sm-5" style="margin-top: 8%;">
+            {#            <div class="jumbotron">#}
+            {#                <h1 class="text-center"> Add News Photos</h1>#}
+            {#            </div>#}
+            {#        </div>#}
+            {#        <div class="container">#}
+            <form action="insertphotos" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1 class="text-center"><span
+                        style="background-image: linear-gradient(#ff7780,transparent 80%,#ff7780);border-radius: 20px"
+                        class="p-sm-3">Add News Photos</span></h1>
+                <br>
+                <div class="form-group">
+                    <label for="newsid" style="font-weight: bold">News Id</label>
+                    <input type="text" id="newsid" name="newsid" class="form-control" value="{{ newsid }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="photo" style="font-weight: bold"> Select Photo</label>
+                    <input type="file" data-rule-required="true" id="photo" name="photo" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="description" style="font-weight: bold">Photo Description</label>
+                    <textarea type="text " data-rule-required="true" id="description" name="description"
+                              class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-danger">
+                </div>
+            </form>
+        </div>
+        <h1 class="text-center"><span
+                        style="background-image: linear-gradient(#ff7780,transparent 80%,#ff7780);border-radius: 20px"
+                        class="p-sm-3">Previous Photos</span></h1>
+        <div class="container">
+            <div class="row">
+                {% for foo in image %}
+                    <div class="col-sm-4 mt-5">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <img src="{% static 'media/' %}{{ foo.photo }}" alt="" width="200" height="200">
+                                <p>{{ foo.desc }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-sm-6"></div>
+                                    <div class="col-sm-6 text-right">
+                                        <form action="deletenewsphoto" method="get">
+                                            <input type="hidden" value="{{ foo.id }}" id="id" name="id">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

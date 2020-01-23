@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Show Category</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static 'fontawesome-free-5.11.2-web/css/all.css' %}" rel="stylesheet">
+    {% include "jsfiles.html" %}
+    <script>
+        $(document).ready(function () {
+            $("#form1").validate();
+        })
+    </script>
+</head>
+<body>
+{#{% include "NavbarAdmin.html" %}#}
+{% include "indexnavigation.html" %}
+<div class="container">
+    <div class="bg-success text-center">
+        <span class="fa fa-plus-circle text-white fa-5x p-2"></span>
+    </div>
+</div>
+<div class="moda"></div>
+<div class="container">
+    <br>
+    <table class="table table-hover">
+        <th>Category Name</th>
+        <th>Description</th>
+        <th>Photo</th>
+
+        {% for p in ar %}
+            <tr>
+                <td>{{ p.catname }}</td>
+                <td>{{ p.description }}</td>
+                <td><img style="max-height: 100px;max-width: 100px" src="{% static "media/" %}{{ p.photo }}" alt="">
+                </td>
+                <td>
+                    <button type="button" class="btn" onclick="deletecategory('{{ p.catname }}')"><i
+                            class="fa fa-trash text-danger  fa-2x"></i></button>
+
+                </td>
+                <td><a href="editcategory?q={{ p.catname }}"><i class="fa fa-edit text-black-50  fa-2x"></i></a></td>
+            </tr>
+        {% endfor %}
+
+    </table>
+</div>
+<script src="{% static "myjs/category.js" %}"></script>
+</body>
+</html>

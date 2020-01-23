@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Edit Category</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    {% include "header.html" %}
+    <br>
+    <form action="savecat" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="category">Category Name</label>
+            <input readonly type="text" value="{{ ar.catname }}" required id="catname" name="catname"
+                   class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="description">New Description</label>
+            <input type="text" id="description" value="{{ ar.description }}" required name="description"
+                   class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="photo"> Category Photo</label>
+            <img src="{% static "media/" %}{{ ar.photo }}" style="max-width: 150px;max-height: 150px" alt="" name="imgtag">
+            <input type="file" name="photo">
+
+
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-success">
+        </div>
+    </form>
+</div>
+</body>
+</html>

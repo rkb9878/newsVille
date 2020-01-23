@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>User Signup</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "fontawesome-free-5.11.2-web/css/all.css" %}" rel="stylesheet">
+
+</head>
+<body onload="hide_otp()">
+<div class="container">
+    <br>
+    <h1 class="jumbotron" style="text-align: center">User Sign-up</h1>
+    <br>
+    <form action="" id="otpsend">
+        <div class="row">
+            <div class="col-sm-6 off offset-sm-3">
+                <div class="form-group">
+                    <i class="fa fa-mobile-alt text-black-50 fa-2x">Mobile</i>
+                    <input type="tel" placeholder="Enter Mobile" class="form-control" data-rule-required="true"
+                           minlength="10" id="otpmobile" maxlength="10" name="otpmobile">
+                </div>
+                <div class="form-group row">
+                    <div class="offset-sm-5"><input type="button" value="Send OTP" onclick="senduserotp()"
+                                                    class="btn btn-info"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form action="" id="hideform">
+
+        <div class="col-sm-6 offset-sm-3">
+            <i class="fa fa-envelope text-black-50">OTP</i>
+            <input type="number" placeholder="Enter OTP" class="form-control" id="otp" name="otp">
+        </div>
+        <div>
+            <span id="mobile"></span>
+        </div>
+        <br>
+        <div class="col-sm-2 offset-sm-5">
+            <input type="button" value="Verify" onclick="verifyotp()" class="btn btn-success">
+        </div>
+    </form>
+
+
+</div>
+<script src="{% static "myjs/user.js" %}"></script>
+{% include "jsfiles.html" %}
+
+</body>
+</html>

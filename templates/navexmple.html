@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load staticfiles %}
+    <!--booststrap-->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css" media="all">
+    <!--//booststrap end-->
+    <!-- font-awesome icons -->
+    <link href="{% static "fontawesome-free-5.11.2-web/css/all.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!--stylesheets-->
+    <link href="{% static "css/style.css" %}" rel='stylesheet' type='text/css' media="all">
+    <!--//stylesheets-->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.icon').click(function () {
+                $('.search').toggleClass('active')
+            })
+        })
+    </script>
+    <style>
+        .search {
+            width: 30px;
+            height: 30px;
+            background: #FFFFFF;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            transition: width 0.5s;
+            overflow: hidden;
+            margin-left: 10px;
+        }
+
+        .search.active {
+            width: 200px;
+        }
+
+        .search input {
+            width: calc(100% - 20px);
+            border: none;
+            outline: none;
+        {#padding: 10px;#} color: #666666;
+        }
+
+        .icon {
+            transition: 0.5s;
+            border-radius: 4px;
+        }
+
+        .search.active.icon {
+            background: #ff355a;
+        }
+
+        a:hover {
+            color: #ffc107;
+        }
+
+        nav a {
+            color: white;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+{#{% include 'indexnavigation.html' %}#}
+<nav class="navbar navbar-expand-lg fixed-top" style="background-image: linear-gradient(#767875b5,#191717);padding: 1%">
+    <img src="{% static 'images/navbar/logo.png' %}" alt=""
+         style="width:14%; border-right: 2px solid red; padding-right: 1%">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form action="#">
+            <div class="search d-inline-flex">
+                <input type="text" id="search">
+                <button type="button" style="background: transparent; outline: none;border:none"><span
+                        class="icon fa fa-search mt-sm-1"></span></button>
+            </div>
+        </form>
+        <ul class="navbar-nav mr-auto">
+            <li class="active">
+                <a href="/">Home</a>
+            </li>
+            <li>
+            <li>
+                <a href="/?select=International">International</a>
+            </li>
+            <li>
+                <a href="/?select=National">National</a>
+            </li>
+            <li>
+                <a href="readblog">Blog</a>
+            </li>
+        </ul>
+        <a class="btn btn-outline-warning" href="userlogin"><span
+                class="text-white pr-2">Login</span><i
+                class="fas fa-power-off fa-1x"></i></a>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<section class="container position-sticky">
+    <div class="text-center" style="padding-bottom: 2%"><img src="{% static 'images/navbar/logo.png' %}" alt="no image">
+    </div>
+    <div>
+        <ul class="d-inline-flex" style="border-top:2px solid black;border-bottom:1px solid darkgrey;">
+            <li class="mr-sm-5 border-right pr-sm-5 mt-sm-2"><a href="/?select=Business">Business</a>
+            </li>
+            <li class="mr-sm-5 border-right pr-sm-5 mt-sm-2"><a href="/?select=AutoMobiles">AutoMobiles</a>
+            </li>
+            <li class="mr-sm-5 border-right pr-sm-5 mt-sm-2"><a href="/?select=Science">Science</a>
+            </li>
+            <li class="mr-sm-5 border-right pr-sm-5 mt-sm-2"><a href="/?select=Entertainment">Entertainment</a>
+            </li>
+            <li class="mr-sm-5 border-right pr-sm-5 mt-sm-2"><a href="/?select=sports">Sports</a>
+            </li>
+            <li class="mr-sm-5 border-right pr-sm-5 mt-sm-2"><a href="/?select=Cities">Cities</a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<script>
+    var input = document.getElementById("search");
+    input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            var output = document.getElementById('search').value;
+            var rp = output.replace(" ", "%20");
+            alert(output);
+            window.location.href = 'searchcont?searchdata=' + rp;
+        }
+    });
+</script>
+</body>
+</html>

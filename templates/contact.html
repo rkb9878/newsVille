@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css" media="all">
+    <!--//booststrap end-->
+    <!-- font-awesome icons -->
+    <link href="{% static "fontawesome-free-5.11.2-web/css/all.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!--stylesheets-->
+    <link href="{% static "css/style.css" %}" rel='stylesheet' type='text/css' media="all">
+    <!--//stylesheets-->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+</head>
+<body>
+{% include 'indexnavigation.html' %}
+{#googlemap#}
+<br>
+<br>
+<br>
+<br>
+<section>
+    <div class="container-fulid">
+        <div class="address_mail_footer_grids">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3539.812628729253!2d153.014155!3d-27.4750921!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b915a0835840a2f%3A0xdd5e3f5c208dc0e1!2sMelbourne+St%2C+South+Brisbane+QLD+4101%2C+Australia!5e0!3m2!1sen!2sin!4v1492257477691"></iframe>
+        </div>
+    </div>
+</section>
+<!-- contact -->
+<section class="contact py-lg-4 py-md-4 py-sm-3 py-3" id="contact">
+    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+        <h3 class="title text-center mb-2">Get In Touch</h3>
+        <div class="title-w3ls-text text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                Lorem ipsum
+            </p>
+        </div>
+        <div class="contact-form">
+            <form action="#" method="post">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 form-group contact-forms">
+                        <input type="text" class="form-control" placeholder="First Name" required="">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 form-group contact-forms">
+                        <input type="text" class="form-control" placeholder="Last Name" required="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 form-group contact-forms">
+                        <input type="text" class="form-control" placeholder="Phone" required="">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 form-group contact-forms">
+                        <input type="email" class="form-control" placeholder="Email" required="">
+                    </div>
+                </div>
+                <div class="form-group contact-forms">
+                    <textarea class="form-control" placeholder="Meassage" required=""></textarea>
+                </div>
+                <button type="submit" class="btn sent-butnn btn-lg">Send</button>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

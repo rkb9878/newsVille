@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>SignUp Form</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "fontawesome-free-5.11.2-web/css/all.css" %}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1 class="jumbotron" style="text-align: center">User Registration</h1>
+    <form action="" id="registeruser">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <div class="form-group">
+                    <i class="fa fa-mobile text-black-50 fa-2x">Mobile Nunber</i>
+                    <input type="tel" style="cursor: auto" name="usermobile" id="usermobile" readonly
+                           class="form-control" value="{{ ar.mobile }}">
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-envelope fa-2x text-black-50">Email</i>
+                    <input type="email" placeholder="Enter Email" name="useremail" id="useremail" class="form-control"
+                           data-rule-required="true">
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-user-edit fa-2x text-black-50">Name</i>
+                    <input type="text" placeholder="Enter name" name="username" id="username" class="form-control"
+                           data-rule-required="true">
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-lock fa-2x text-black-50">Password</i>
+                    <input type="password" placeholder="Enter Password" name="userpassword" id="userpassword"
+                           class="form-control"
+                           data-rule-required="true">
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-lock fa-2x text-black-50">Confirm Password</i>
+                    <input type="password" placeholder="Confirm Password" name="confirmpassword" id="confirmpassword"
+                           class="form-control"
+                           data-rule-required="true">
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-address-book fa-2x text-black-50">Address</i>
+                    <input type="text" placeholder="Enter Address" name="useraddress" id="useraddress"
+                           class="form-control"
+                           data-rule-required="true">
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-user-edit fa-2x text-black-50">State</i>
+                    <input type="text" placeholder="Enter State" name="userstate" id="userstate" class="form-control"
+                           data-rule-required="true">
+                </div>
+                <div class="form-group">
+                    <i class="fa fa-folder-open text-black-50 fa-2x">Select Photo</i>
+                    <input type="file" name="userphoto" id="userphoto" class="form-control" data-rule-required="true">
+                </div>
+                <div class="row form-group">
+                    <div class="offset-sm-5"><input type="button" onclick="registeruser()" value="Submit"
+                                                    class="btn btn-primary"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="offset-sm-4" id="ans">
+    </div>
+</div>
+
+<script src="{% static "myjs/user.js" %}"></script>
+{% include "jsfiles.html" %}
+
+</body>
+
+</html>

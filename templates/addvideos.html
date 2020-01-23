@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Add Videos</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "fontawesome-free-5.11.2-web/css/all.css" %}" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="jumbotron">
+        <h1 class="text-center"> Add News Videos</h1>
+    </div>
+</div>
+<div class="container">
+    <form action="insertvideosaction" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="newsid">News Id</label>
+            <input type="text" id="newsid" name="newsid" class="form-control" value="{{ newsid }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="videolink">Youtube Link</label>
+            <textarea id="videolink" name="videolink" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="description">Video Description</label>
+            <textarea type="text" data-rule-required="true" id="description" name="description" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add" class="btn btn-success">
+        </div>
+
+    </form>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% for foo in video %}
+            <div class="col-sm-4 mt-5">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <iframe width="300" height="315" src="{{ foo.videolink}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{#                        <iframe  src="https://www.youtube.com/embed/RC-BZR68mCs"></iframe>#}
+{#                        <iframe width="560" height="315" src="https://www.youtube.com/embed/RC-BZR68mCs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>#}
+                        <p>{{ foo.desc }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6 text-right">
+                                <form action="deletenewsvideo" method="get">
+                                    <input type="hidden" value="{{ foo.id }}" id="id" name="id">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

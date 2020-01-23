@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>Add Admin</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fontawesome-free-5.11.2-web/css/all.css' %}">
+
+    {#    <script>#}
+    {#        $(document).ready(function () {#}
+    {#            $("#form1").validate();#}
+    {#        })#}
+    {#    </script>#}
+    <style>
+        .table-hover tbody tr:hover {
+            color: #000000;
+            /* background-color: #007bff52; */
+            background: linear-gradient(transparent 50%, #8baaca);
+        }
+
+        button.bg-light:hover {
+            transition: 0.5s ease-in-out;
+            background-color: white !important;
+            cursor: pointer;
+            box-sizing: border-box;
+            box-shadow: 0 10px 10px #868686;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body style="background-image: url({% static 'images/sky2.jpg' %})">
+<div>
+    {% include "jsfiles.html" %}
+    {#{% include "NavbarAdmin.html" %}#}
+    {% include "indexnavigation.html" %}
+    <br>
+
+    <!----------Add Admin modal--->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Admin</h4>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addadmin" action="">
+                        <div class="form-group">
+                            <i class="fa fa-envelope text-black-50">Email</i>
+                            <input type="email" placeholder="Enter Email" data-rule-required="true" class="form-control"
+                                   name="email" id="email">
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-lock text-black-50">Password</i>
+                            <input type="password" placeholder="Enter Password" data-rule-required="true"
+                                   class="form-control" name="password" id="password">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-folder-open text-black-50">Type</i>
+                            <select name="type" id="type" required class="form-control">
+                                <option>Admin</option>
+                                <option>Sub-Admin</option>
+
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-mobile text-black-50">Mobile</i>
+                            <input type="number" placeholder="Enter Mobile" data-rule-number="true" minlength="10"
+                                   maxlength="10" class="form-control"
+                                   name="mobile" id="mobile">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary offset-sm-4 col-sm-4" onclick="addadmin()">ADD
+                            </button>
+                        </div>
+
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------Add Admin End----->
+
+    <!---------show admin data in table form------>
+    <br>
+    <br>
+    <div class="container mt-5 p-sm-4 rounded" style="background: rgba(255,255,255,0.6);">
+        <span class="float-right"><button
+                style="cursor: pointer;"
+                class="fa fa-user-plus bg-light p-sm-1 rounded btn"
+                data-toggle="modal" data-target="#myModal">&nbsp;&nbsp;Add New Admin
+            </button></span>
+        <div class="text-center">
+            <h1><u>Administrators</u></h1>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="bg-light">
+                <tr>
+                    <th>S. No.</th>
+                    <th>Email</th>
+                    <th>Type</th>
+                    <th>Mobile</th>
+                    <th colspan="2">Action</th>
+                </tr>
+                </thead>
+                <tbody class="font-weight-bold" id="admindataview"></tbody>
+            </table>
+        </div>
+    </div>
+    <!-------End of data table form---->
+
+    <!-------Edit admin modal---------->
+    <div class="modal" id="editadminmyModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Admin</h4>
+                    <button type="button" class="close" data-dismiss="modal">x</button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="editadmin">
+                        <div class="form-group">
+                            <i class="fa fa-envelope text-black-50">Email</i>
+                            <input readonly type="email" style="cursor: auto" readonly data-rule-required="true"
+                                   id="editemail" name="editemail" class="form-control">
+                        </div>
+                        {#                    <div class="form-group">#}
+                        {#                        <i class="fa fa-lock text-black-50">Password</i>#}
+                        {#                        <input readonly type="password" readonly placeholder="Enter Password" data-rule-required="true"#}
+                        {#                               id="editpassword" name="editpassword" class="form-control">#}
+                        {#                    </div>#}
+                        <div>
+                            <i class="fa fa-folder-open text-black-50">Select Type</i>
+                            <select required class="form-control" data-rule-required="true" name="newtype" id="newtype">
+                                <option>Admin</option>
+                                {#
+                                <option>Sub Admin</option>
+                                {#                            {% if ar.type == "Admin" %}#}
+                                {#                                <option selected>Admin</option>#}
+                                {#                                <option>Sub Admin</option>#}
+                                {#                            {% else %}#}
+                                {#                                <option>Admin</option>#}
+                                {#                                <option selected>Sub Admin</option>#}
+                                {#                            {% endif %}#}
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-mobile-alt text-black-50">Mobile</i>
+                            <input type="number" placeholder="Enter Mobile" data-rule-required="true"
+                                   id="editmobile" name="editmobile" class="form-control " maxlength="10"
+                                   minlength="10">
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <button type="button" value="Save Changes" class="btn btn-primary offset-sm-4 col-sm-4"
+                                    onclick="updateadmin()">Save Changes
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!------------End of edit admin modal------------>
+
+    <!----------Button To open The Modal---------->
+    {#    <div class="container text-center">#}
+    {#        <div class=" text-white offset-sm-3 col-sm-6 mt-3">#}
+    {#            <button style="cursor: pointer; border-style: none" class="fa fa-user-plus fa-2x bg-transparent"#}
+    {#                    data-toggle="modal" data-target="#myModal">&nbsp;&nbsp;Add New Admin#}
+    {#            </button>#}
+    {#        </div>#}
+    {##}
+    {#    </div>#}
+
+
+    <script src="{% static 'myjs/addadmin.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            admindataview();
+        })
+    </script>
+</div>
+</body>
+</html>

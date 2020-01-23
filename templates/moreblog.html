@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Blog Details</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fontawesome-free-5.11.2-web/css/all.css' %}">
+</head>
+<body>
+{#{% include "NavbarAdmin.html" %}#}
+{% include "indexnavigation.html" %}
+<br>
+<br>
+<br>
+<div class="container">
+    <h1>{{ msg.title }}</h1>
+    <div id="showtext"></div>
+    <h5>{{ msg.dateofpublish }}</h5>
+    {% if request.session.adminemail %}
+        <a  href="deleteblog?bid={{ msg.blogid }}" type="button" class="btn btn-danger">Delete</a>
+    {% endif %}
+</div>
+
+
+{% include "jsfiles.html" %}
+
+<script>
+    $(document).ready(function () {
+        document.getElementById('showtext').innerHTML = '{{ msg.blogtext | safe }}';
+    })
+</script>
+</body>
+</html>

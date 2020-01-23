@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+{#    <link type="text/css" rel="stylesheet" href="demo.css">#}
+
+{% load staticfiles %}
+    <link href="{% static "css/jquery-te-1.4.0.css" %}" rel="stylesheet">
+{#<script src ="{% static "js/jquery-3.4.1.min.js"%}"></script>#}
+{#<script src ="{% static "js/popper.js"%}"></script>#}
+{#<script src ="{% static "js/bootstrap.js"%}"></script>#}
+{#<script src="{% static "dist/jquery.validate.js"%}"></script>#}
+{#<script src="{% static "dist/jquery.validate.js"%}"></script>#}
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js" charset="utf-8"></script>
+<script src="{% static "js/jquery-te-1.4.0.min.js"%}"></script>
+{#<script type="text/javascript" src="http://code.jquery.com/jquery.min.js" charset="utf-8"></script>#}
+{#<script type="text/javascript" src="../jquery-te-1.4.0.min.js" charset="utf-8"></script>#}
+</head>
+<body>
+<textarea name="textarea" class="jqte-test"></textarea>
+
+{#<button class="status">Toggle jQTE</button>#}
+{#<input name="input" type="text" value="<b>My contents are from <u><span style=&quot;color:rgb(0, 148, 133);&quot;>INPUT</span></u></b>" class="jqte-test">#}
+{##}
+{#<span name="span" class="jqte-test"><b>My contents are from <u><span style="color:rgb(0, 148, 133);">SPAN</span></u></b></span>#}
+
+<script>
+	$('.jqte-test').jqte();
+
+	// settings of status
+	var jqteStatus = true;
+	{#$(".status").click(function()#}
+	{#{#}
+	{#	jqteStatus = jqteStatus ? false : true;#}
+	{#	$('.jqte-test').jqte({"status" : jqteStatus})#}
+	{#});#}
+</script>
+</body>
+</html>

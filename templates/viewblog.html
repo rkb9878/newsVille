@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>View Blog</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fontawesome-free-5.11.2-web/css/all.css' %}">
+</head>
+<body>
+{#{% include "NavbarAdmin.html" %}#}
+{% include "indexnavigation.html" %}
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+
+
+<div class="table-responsive">
+
+     <table class="table table-hover">
+            <thead class="bg-light">
+            <tr>
+                <th>Blog ID</th>
+                <th>Blog Title</th>
+                <th>Date Of Publish</th>
+                <th colspan="2">Action</th>
+            </tr>
+            </thead>
+            <tbody id="viewblog">
+            {% for foo in msg %}
+            <tr>
+            <td>{{ foo.blogid }}</td>
+            <td>{{ foo.title }}</td>
+            <td>{{ foo.dateofpublish }}</td>
+            <td><a  href="moreblog?bid={{ foo.blogid }}" type="button" class="btn btn-success">View More</a></td>
+            </tr>
+            {% endfor %}
+
+{#            {{ msg }}#}
+            </tbody>
+
+        </table>
+
+</div>
+</div>
+
+
+
+
+{% include "jsfiles.html" %}
+</body>
+</html>

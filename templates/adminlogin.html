@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static 'fontawesome-free-5.11.2-web/css/all.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'mycsss/mycsss.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <script>
+        $(document).ready(function () {
+            $("#form1").validate();
+        })
+    </script>
+</head>
+<body>
+{#{% include 'indexnavigation.html' %}#}
+
+<section id="login">
+
+<br>
+<br>
+    <div class="">
+        <div class="text-center">
+            <h1 class="comman-title">Admin</h1>
+            <h1 class="comman-title">Login</h1>
+        </div>
+        <div id="box">
+            <div id="innderbox">
+                <form action="checkadminlogin" id="form1" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-4 offset-sm-4">
+                            <div class="form-group">
+                                <i class="fa fa-envelope fa-2x text-black-50">Email</i>
+                                <input type="email" placeholder="Enter Email" data-rule-required="true"
+                                       class="form-control" name="email">
+
+                            </div>
+
+                            <div class="form-group">
+                                <i class="fa fa-eye text-black-50 fa-2x">Password</i>
+                                <input type="password" placeholder="Enter Password" data-rule-required="true"
+                                       class="form-control" name="password">
+
+                            </div>
+                            <div>
+                                <input type="submit" value="Login" class="btn btn-success">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {{ ar.msg }}
+            </div>
+
+        </div>
+
+
+    </div>
+</section>
+{% include "jsfiles.html" %}
+{#{% include 'indexfooter.html' %}#}
+</body>
+</html>

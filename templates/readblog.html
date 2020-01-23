@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Read Blog</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+
+    <!--booststrap-->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" type="text/css" media="all">
+    <!--//booststrap end-->
+    <!-- font-awesome icons -->
+    <link href="{% static "fontawesome-free-5.11.2-web/css/all.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="{% static "ui/jquery-ui.css" %}" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!--stylesheets-->
+    <link href="{% static "css/style.css" %}" rel='stylesheet' type='text/css' media="all">
+    <!--//stylesheets-->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <style>
+         .main {
+            background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .8)), url("{% static 'images/b1.jpg' %}") fixed center no-repeat;
+        }
+    </style>
+</head>
+<body>
+{% if request.session.user_email %}
+    {% include 'indexnavigationuser.html' %}
+{% elif not request.session.user_email %}
+    {% include 'navexmple.html' %}
+{% endif %}
+<section class="main">
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm-3 text-left">
+            <table class="table table-hover">
+                <thead class="bg-light">
+                <th>Columnist</th>
+                {% for foo in ar %}
+                    <tr>
+                        <td>
+                            <button type="button" class="text-primary btn"
+                                    onclick="viewauthorblog({{ foo.id }})"><img src="{% static 'media/' %}{{ foo.photo }}" class="rounded-circle" alt="" height="60px" width="60px">&nbsp;&nbsp;&nbsp;{{ foo.name }}</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <br>
+                <th>Blogger</th>
+                {% for foo in ar1 %}
+                    <tr>
+                        <td>
+                            <button type="button" class="text-primary btn"
+                                    onclick="viewauthorblog({{ foo.id }})"><img src="{% static 'media/' %}{{ foo.photo }}" class="rounded-circle" alt="" height="60px" width="60px">&nbsp;&nbsp;&nbsp;{{ foo.name }}</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-sm-9">
+            <div id="readblogid"></div>
+            {#            {% for foo in ar3 %}#}
+            {#                <div class="row bg-white mb-3">#}
+            {#                    <div class="col-sm-2">#}
+            {#                        <img src="{% static 'media/' %}{{ foo.photo }}" alt="" height="150" width="100">#}
+            {#                    </div>#}
+            {#                    <div class="col-sm-6 text-left">#}
+            {#                        <div>#}
+            {#                            <span class="font-weight-bold h5"><a#}
+            {#                                    href="readblog2?blogid={{ foo.blogid }}">{{ foo.title }}</a></span>#}
+            {#                        </div>#}
+            {#                        <div>#}
+            {#                            <span class=""><strong class="h5">Author:</strong>{{ foo.name }}</span>#}
+            {#                        </div>#}
+            {#                        <div>#}
+            {#                            <span class=""><strong class="h5">Date Of Publish:</strong>{{ foo.dateofpublish }}</span>#}
+            {#                        </div>#}
+            {##}
+            {#                    </div>#}
+            {#                </div>#}
+            {#            {% endfor %}#}
+        </div>
+    </div>
+</div>
+</section>
+
+<script src="{% static 'myjs/readblog.js' %}"></script>
+{% include "jsfiles.html" %}
+<script>
+    $(document).ready(function () {
+        {#alert({{ar3 |safe }});#}
+        readblog({{ar3 |safe }});
+    });
+</script>
+</body>
+</html>

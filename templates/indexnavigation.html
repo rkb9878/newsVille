@@ -1,0 +1,173 @@
+{#<div class="headder-top">#}
+{#    <!-- nav -->#}
+{#    <nav class="sticky-top">#}
+{#        <div id="logo">#}
+{#            <h1>#}
+{#                <a href="/">NB</a>#}
+{#            </h1>#}
+{#        </div>#}
+{#        <div class="sub-headder position-relative">#}
+{#            <h6>#}
+{#                <a href="/">News#}
+{#                    <br>Blog</a>#}
+{#            </h6>#}
+{#        </div>#}
+{#        <label for="drop" class="toggle">Menu</label>#}
+{#        <input type="checkbox" id="drop">#}
+{#        <ul class="menu mt-2">#}
+{#            <li class="active">#}
+{#                <a href="/">Home</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <!-- First Tier Drop Down -->#}
+{#                <!--<label for="drop-2" class="toggle toogle-2">Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span>#}
+{#                  </label>#}
+{#                  <a href="#">Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span></a>#}
+{#                  <input type="checkbox" id="drop-2">#}
+{#                  <ul>#}
+{#                    <li><a href="gallery.html" class="drop-text">Gallery</a></li>#}
+{#                    <li><a href="menu.html" class="drop-text">Menu</a></li>#}
+{#                    <li><a href="recipe.html" class="drop-text">Recipes</a></li>#}
+{#                  </ul>#}
+{#                </li>-->#}
+{##}
+{#            <li>#}
+{#                <a href="/?select=Business">Business</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="/?select=Entertainment">Entertainment</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="/?select=International">International</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="/?select=National">National</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="/?select=AutoMobiles">AutoMobiles</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="/?select=Science">Science</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="/?select=sports">sports</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a href="readblog">Blog</a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a class="btn btn-success" href="userlogin"><span class="text-white pr-2">Login</span><i#}
+{#                        class="fas fa-sign-in-alt fa-1x"></i></a>#}
+{#            </li>#}
+{#            <li>#}
+{#                <a class="btn btn-success" href="#">Start Reading <span class="p-2"><i class="far fa-arrow-alt-circle-right"></i></span></a>#}
+{#            </li>#}
+{#        </ul>#}
+{#    </nav>#}
+{#    <!-- //nav -->#}
+{#</div>#}
+<style>
+    li a:hover {
+        transition: 0.5s ease-in-out;
+        color: #ffc107;
+        background: white;
+        border-radius: 10px;
+    }
+
+    li {
+        margin: 0 10px;
+    }
+
+    li a {
+        color: white;
+    }
+
+    .dropdown-item {
+        display: block;
+        width: 100%;
+        padding: 0.25rem 1.5rem;
+        clear: both;
+        font-weight: 400;
+        color: #212529;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: rgba(237, 241, 234, 0.15);
+        border: 0;
+    }
+
+    .dropdown-item:hover {
+        color: #16181b;
+        text-decoration: none;
+        background-image: linear-gradient(white,#ffc10785);
+    }
+</style>
+{% load staticfiles %}
+<nav class="navbar navbar-expand-lg fixed-top" style="background-image: linear-gradient(#767875b5,#191717);padding: 1%">
+    <img src="{% static 'images/navbar/logo.png' %}" alt=""
+         style="width:14%; border-right: 2px solid red; padding-right: 1%">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {#        <form action="#">#}
+        {#            <div class="search d-inline-flex">#}
+        {#                <input type="text" id="search">#}
+        {#                <button type="button" style="background: transparent; outline: none;border:none"><span#}
+        {#                        class="icon fa fa-search mt-sm-1"></span></button>#}
+        {#            </div>#}
+        {#        </form>#}
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="admindashboard">Home</a>
+            </li>
+            <li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="addadmin">Add Admin</a>
+                    <a class="dropdown-item" href="changeadminpassword">Change Admin Password</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Category
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="addcategory">Add Category</a>
+                    {#                    <a class="dropdown-item" href="showcategory">Show Categories</a>#}
+
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    News
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="addnews">Add news</a>
+                    <a class="dropdown-item" href="shownews">Show Categories</a>
+
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="addauthor">
+                    Authors
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Blogs
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="blogs">Insert Blog</a>
+
+                </div>
+            </li>
+        </ul>
+        <a class="btn btn-outline-warning" href="adminlogout"><span
+                class="text-white pr-2">Logout</span><i
+                class="fas fa-power-off fa-1x"></i></a>
+    </div>
+</nav>

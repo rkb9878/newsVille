@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Show News</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "fontawesome-free-5.11.2-web/css/all.css" %}" rel="stylesheet">
+    <style>
+        .table-hover tbody tr:hover {
+            transition: 0.5s ease-in-out;
+            color: #212529;
+            background-color: rgb(176, 255, 253);
+            {#filter: blur(0.5);#}
+        }
+    </style>
+</head>
+<body style="background-image: url({% static 'images/sky2.jpg' %})">
+<br>
+<br>
+<br>
+{#{% include 'NavbarAdmin.html' %}#}
+{% include "indexnavigation.html" %}
+<div class="container mt-5 p-sm-4 rounded" style="background: rgba(255,255,255,0.6);">
+    <div class="container">
+        <h1 class="text-center" style="border-bottom: 1px dashed black;">Select News Category</h1>
+        <div class="form-group">
+            <select data-required class="form-control w-50 offset-sm-3 rounded-pill" name="newscatname" id="newscatname"
+                    onchange="select(value)">
+                <option value="">----Select option----</option>
+                {% for foo in ar %}
+                    <option value="{{ foo }}">{{ foo }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <hr>
+    <div class="container table-responsive" id="newstable">
+    </div>
+
+    <div class="modal" id="editnews">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title">Edit NEWS</h1>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="editvalid">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Select News Category</label>
+                            <input type="hidden" id="id">
+                            <select data-required class="form-control" name="newscatname" id="nawscatname">
+                                <option value="">----Select option----</option>
+                                {% for foo in ar %}
+                                    <option value="{{ foo }}">{{ foo }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <label>News Title</label>
+                            <input type="text" data-rule-required="true" class="form-control" name="newstitle"
+                                   id="newstitle">
+                        </div>
+                        {#                    <div>#}
+                        {#                        <label>News Description</label>#}
+                        {#                        <input type="text" data-rule-required="true" class="form-control" name="newsdescription"#}
+                        {#                               id="newsdescription">#}
+                        {#                    </div>#}
+                        <div>
+                            <label>News Hashtag</label>
+                            <input type="text" data-rule-required="true" class="form-control" name="newshashtag"
+                                   id="newshashtag">
+                        </div>
+                        <div class="form-group">
+                            <input type="button" onclick="editnewsaction()" value="add" class=" btn btn-success">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="close" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {#edit images#}
+    <div class="modal" id="addphotos">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title">ADD PHOTOS</h1>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" id="newsid" name="newsid" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="close" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#edit images end#}
+    {% include 'jsfiles.html' %}
+    <script src="{% static 'myjs/news.js' %}"></script>
+</body>
+</html>
